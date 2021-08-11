@@ -26,19 +26,18 @@ namespace ConsoleApp1
                     Console.WriteLine($"Book {b.Id} - {b.Name} - {b.Author} - {b.Annotation}");
                 }
 
-                List<Book> booksList = new List<Book>(5);
-                booksList.Add(new Book() { Name = "name1", Author = "author1", Annotation = "annotation1" });
-                booksList.Add(new Book() { Name = "name2", Author = "author2", Annotation = "annotation2" });
-                booksList.Add(new Book() { Name = "name3", Author = "author3", Annotation = "annotation3" });
-                booksList.Add(new Book() { Name = "name4", Author = "author4", Annotation = "annotation4" });
-                booksList.Add(new Book() { Name = "name5", Author = "author5", Annotation = "annotation5" });
-
-                foreach (Book b in booksList)
+                List<Book> booksList = new List<Book>(5)
                 {
-                    db.Books.Add(b);
-                    db.SaveChanges();
+                    new Book() { Name = "name1", Author = "author1", Annotation = "annotation1" },
+                    new Book() { Name = "name2", Author = "author2", Annotation = "annotation2" },
+                    new Book() { Name = "name3", Author = "author3", Annotation = "annotation3" },
+                    new Book() { Name = "name4", Author = "author4", Annotation = "annotation4" },
+                    new Book() { Name = "name5", Author = "author5", Annotation = "annotation5" }
+                };
 
-                }
+                db.Books.AddRange(booksList);
+                db.SaveChanges();
+
 
                 var books2 = db.Books.ToList();
                 Console.WriteLine("Список объектов №2:");
